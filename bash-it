@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Installing bit..."
+
 mkdir -p ~/.bit_{exports,aliases,functions}
 
 if [ -e ~/.bash_profile ] ; then
