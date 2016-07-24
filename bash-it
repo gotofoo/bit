@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p ~/.bit_{aliases,functions}
+mkdir -p ~/.bit_{exports,aliases,functions}
 
 if [ -e ~/.bash_profile ] ; then
   if [ -w ~/.bash_profile ] ; then
@@ -17,7 +17,7 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-for f in ~/.bit_{aliases,functions}/*; do source $f; done
+for f in ~/.bit_{exports,aliases,functions}/*; do source $f; done
 
 if [ -r ~/.bit_prompt ] ; then
   source ~/.bit_prompt
