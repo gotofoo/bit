@@ -31,6 +31,10 @@ cat << 'EOF' > ~/.bit_exports/version
 export BIT_VERSION=0.0.1
 EOF
 
+cat << 'EOF' > ~/.bit_exports/systemd_editor
+export SYSTEMD_EDITOR=vim
+EOF
+
 cat << 'EOF' > ~/.bit_aliases/ls
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
