@@ -28,7 +28,7 @@ fi
 EOF
 
 cat << 'EOF' > ~/.bit_exports/version
-export BIT_VERSION=0.0.2
+export BIT_VERSION=0.0.3
 EOF
 
 cat << 'EOF' > ~/.bit_exports/editor
