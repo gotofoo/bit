@@ -16,7 +16,7 @@ cat << 'EOF' >> ~/.bash_profile
 #BASH-IT
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+  PATH="$HOME/bin:$PATH"
 fi
 
 for f in ~/.bit_{exports,aliases,functions}/*; do source $f; done
@@ -28,7 +28,15 @@ fi
 EOF
 
 cat << 'EOF' > ~/.bit_exports/version
-export BIT_VERSION=0.0.1
+export BIT_VERSION=0.0.2
+EOF
+
+cat << 'EOF' > ~/.bit_exports/editor
+if command -v vim > /dev/null ; then
+  export EDITOR=vim
+elif command -v vi > /dev/null ; then
+  export EDITOR=vi
+fi
 EOF
 
 cat << 'EOF' > ~/.bit_exports/systemd_editor
@@ -83,6 +91,6 @@ EOF
 
 cat << 'EOF' > ~/.bit_functions/pw_gen
 function bit_pw_gen() {
-  env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 10
+  env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c $1
 }
 EOF
