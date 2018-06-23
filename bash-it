@@ -85,13 +85,14 @@ EOF
 
 cat << 'EOF' > ~/.bit_functions/bit_get_install_cmd
 function bit_get_install_cmd() {
-  echo "curl -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash"
+  echo "curl -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash && source ~/.bash_profile"
 }
 EOF
 
 cat << 'EOF' > ~/.bit_functions/bit_update
 function bit_update() {
   curl -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it?v=$BIT_VERSION | bash
+  source ~/.bash_profile
 }
 EOF
 
@@ -100,7 +101,5 @@ function bit_pw_gen() {
   env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c $1
 }
 EOF
-
-source ~/.bash_profile
 
 echo "Installed bit $VERSION"
