@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.0.17
+VERSION=0.0.18
 
 echo "Installing bit..."
 
@@ -100,11 +100,12 @@ function bit() {
             echo "Use the following command to install BIT:"
             echo "    curl -L https://raw.github.com/gotofoo/bit/master/bash-it | bash"
             echo ""
-            echo "Usage:  bit <command> [args...]"
+            echo "Usage:"
+            echo "    bit <command> [args...]"
             echo ""
             echo "Commands:"
-            echo "        pw <length> - generates a random password"
-            echo "        update      - updates BIT to the latest version"
+            echo "    pw <length> - generates a random password"
+            echo "    update      - updates BIT to the latest version"
             return 1
     esac
 }
