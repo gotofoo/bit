@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.0.11
+VERSION=0.0.12
 
 echo "Installing bit..."
 
@@ -85,13 +85,13 @@ EOF
 
 cat << 'EOF' > ~/.bit_functions/bit_get_install_cmd
 function bit_get_install_cmd() {
-  echo "curl -H 'Cache-Control: no-cache' https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash && source ~/.bash_profile"
+  echo "curl -L -H 'Cache-Control: no-cache' https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash && source ~/.bash_profile"
 }
 EOF
 
 cat << 'EOF' > ~/.bit_functions/bit_update
 function bit_update() {
-  curl -H 'Cache-Control: no-cache' https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it?t=$(date +"%s") | bash
+  curl -L -H 'Cache-Control: no-cache' https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it?t=$(date +"%s") | bash
   source ~/.bash_profile
 }
 EOF
