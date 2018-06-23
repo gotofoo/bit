@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.0.16
+VERSION=0.0.17
 
 echo "Installing bit..."
 
@@ -91,14 +91,14 @@ function bit() {
             echo ""
             ;;
         update)
-            curl -L https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it?$(date +"%s") | bash
+            curl -L https://raw.github.com/gotofoo/bit/master/bash-it?$(date +"%s") | bash
             source ~/.bash_profile
             ;;
         *)
             echo "BIT version $BIT_VERSION"
             echo ""
             echo "Use the following command to install BIT:"
-            echo "    curl -L https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash"
+            echo "    curl -L https://raw.github.com/gotofoo/bit/master/bash-it | bash"
             echo ""
             echo "Usage:  bit <command> [args...]"
             echo ""
