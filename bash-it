@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.0.5
+VERSION=0.0.6
 
 echo "Installing bit..."
 
@@ -14,14 +14,14 @@ if [ -e ~/.bash_profile ] ; then
   fi
 fi
 
+cat << EOF > ~/.bit_exports/version
+export BIT_VERSION=$VERSION
+EOF
+
 cat << 'EOF' >> ~/.bash_profile
 #BASH-IT
 for f in ~/.bit_{exports,aliases,functions}/*; do source $f; done
 #/BASH-IT
-EOF
-
-cat <<EOF > ~/.bit_exports/version
-export BIT_VERSION=$VERSION
 EOF
 
 cat << 'EOF' > ~/.bit_exports/path_home_bin
@@ -91,7 +91,7 @@ EOF
 
 cat << 'EOF' > ~/.bit_functions/bit_update
 function bit_update() {
-  curl -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash
+  curl -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it?v=$BIT_VERSION | bash
 }
 EOF
 
