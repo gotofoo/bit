@@ -14,21 +14,24 @@ fi
 
 cat << 'EOF' >> ~/.bash_profile
 #BASH-IT
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
-fi
-
 for f in ~/.bit_{exports,aliases,functions}/*; do source $f; done
-
-if [ -r ~/.bit_prompt ] ; then
-  source ~/.bit_prompt
-fi
 #/BASH-IT
 EOF
 
 cat << 'EOF' > ~/.bit_exports/version
-export BIT_VERSION=0.0.3
+export BIT_VERSION=0.0.4
+EOF
+
+cat << 'EOF' > ~/.bit_exports/path_home_bin
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+  PATH="$HOME/bin:$PATH"
+fi
+EOF
+
+cat << 'EOF' > ~/.bit_exports/prompt
+export PS1=$'\[\033[30;47m\] `date +%H:%M:%S` \[\033[37;41m\]\xee\x82\xb0\[\033[37m\] \u@\h \[\033[31;40m\]\xee\x82\xb0\[\033[37m\] `pwd | sed -r "s#"$HOME"#~#g; s#^/##g; s#/# \xee\x82\xb1 #g"` \[\033[0;30m\]$([[ -n $(git branch 2> /dev/null) ]] && (BRACOL=$([[ -z $(parse_git_dirty) ]] && echo 2 || echo 3) && echo -e "\[\033[30;"$((40+BRACOL))"m\]\xee\x82\xb0 \xee\x82\xa0 $(parse_git_branch) \[\033[0;"$((30+BRACOL))"m\]"))\xee\x82\xb0\n\[\033[30;47m\] $ \[\033[0;37m\]\xee\x82\xb0 '
+export PS2=$'\[\033[30;47m\]   \[\033[0;37m\]\xee\x82\xb0 '
 EOF
 
 cat << 'EOF' > ~/.bit_exports/editor
@@ -88,11 +91,6 @@ cat << 'EOF' > ~/.bit_functions/bit_update
 function bit_update() {
   curl -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash
 }
-EOF
-
-cat << 'EOF' > ~/.bit_prompt
-export PS1=$'\[\033[30;47m\] `date +%H:%M:%S` \[\033[37;41m\]\xee\x82\xb0\[\033[37m\] \u@\h \[\033[31;40m\]\xee\x82\xb0\[\033[37m\] `pwd | sed -r "s#"$HOME"#~#g; s#^/##g; s#/# \xee\x82\xb1 #g"` \[\033[0;30m\]$([[ -n $(git branch 2> /dev/null) ]] && (BRACOL=$([[ -z $(parse_git_dirty) ]] && echo 2 || echo 3) && echo -e "\[\033[30;"$((40+BRACOL))"m\]\xee\x82\xb0 \xee\x82\xa0 $(parse_git_branch) \[\033[0;"$((30+BRACOL))"m\]"))\xee\x82\xb0\n\[\033[30;47m\] $ \[\033[0;37m\]\xee\x82\xb0 '
-export PS2=$'\[\033[30;47m\]   \[\033[0;37m\]\xee\x82\xb0 '
 EOF
 
 cat << 'EOF' > ~/.bit_functions/pw_gen
