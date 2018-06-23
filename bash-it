@@ -7,11 +7,11 @@ echo "Installing bit..."
 mkdir -p ~/.bit_{exports,aliases,functions}
 
 if [ -e ~/.bash_profile ] ; then
-  if [ -w ~/.bash_profile ] ; then
-    sed -i '/#BASH-IT/,/#\/BASH-IT/d' ~/.bash_profile
-  else
-    echo "Warning: .bash_profile is not writeable"
-  fi
+    if [ -w ~/.bash_profile ] ; then
+        sed -i '/#BASH-IT/,/#\/BASH-IT/d' ~/.bash_profile
+    else
+        echo "Warning: .bash_profile is not writeable"
+    fi
 fi
 
 cat << EOF > ~/.bit_exports/version
@@ -27,7 +27,7 @@ EOF
 cat << 'EOF' > ~/.bit_exports/path_home_bin
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin:$PATH"
 fi
 EOF
 
@@ -38,9 +38,9 @@ EOF
 
 cat << 'EOF' > ~/.bit_exports/editor
 if command -v vim > /dev/null ; then
-  export EDITOR=vim
+    export EDITOR=vim
 elif command -v vi > /dev/null ; then
-  export EDITOR=vi
+    export EDITOR=vi
 fi
 EOF
 
@@ -51,9 +51,9 @@ EOF
 cat << 'EOF' > ~/.bit_aliases/ls
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-  colorflag="--color"
+    colorflag="--color"
 else # OS X `ls`
-  colorflag="-G"
+    colorflag="-G"
 fi
 
 # List all files colorized in long format
@@ -73,13 +73,13 @@ EOF
 
 cat << 'EOF' > ~/.bit_functions/parse_git_dirty
 function parse_git_dirty() {
-  [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+    [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
 }
 EOF
 
 cat << 'EOF' > ~/.bit_functions/parse_git_branch
 function parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/^* //g"
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/^* //g"
 }
 EOF
 
