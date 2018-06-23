@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.0.14
+VERSION=0.0.15
 
 echo "Installing bit..."
 
@@ -83,22 +83,30 @@ function parse_git_branch() {
 }
 EOF
 
-cat << 'EOF' > ~/.bit_functions/bit_get_install_cmd
-function bit_get_install_cmd() {
-  echo "curl -L https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash && source ~/.bash_profile"
-}
-EOF
-
-cat << 'EOF' > ~/.bit_functions/bit_update
-function bit_update() {
-  curl -L https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it?$(date +"%s") | bash
-  source ~/.bash_profile
-}
-EOF
-
-cat << 'EOF' > ~/.bit_functions/pw_gen
-function bit_pw_gen() {
-  env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c $1
+cat << 'EOF' > ~/.bit_functions/bit
+function bit() {
+    case "$1" in
+        pw)
+            env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c $2
+            echo ""
+            ;;
+        update)
+            curl -L https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it?$(date +"%s") | bash
+            source ~/.bash_profile
+            ;;
+        *)
+            echo "BIT version $BIT_VERSION"
+            echo ""
+            echo "Use the following command to install BIT:"
+            echo "    curl -L https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash"
+            echo ""
+            echo "Usage:  bit <command> [args...]"
+            echo ""
+            echo "Commands:"
+            echo "        pw <length> - generates a random password"
+            echo "        update      - updates BIT to the latest version"
+            return 1
+    esac
 }
 EOF
 
