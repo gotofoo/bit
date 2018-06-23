@@ -2,7 +2,7 @@
 
 ```
 Use the following command to install BIT:
-    curl -L https://gist.github.com/gotofoo/c906cd44171f54ddd0ebc39a14b50171/raw/bash-it | bash
+    curl -L https://raw.github.com/gotofoo/bit/master/bash-it | bash
 
 Usage:
     bit <command> [args...]
