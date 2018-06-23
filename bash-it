@@ -101,4 +101,6 @@ function bit_pw_gen() {
 }
 EOF
 
+source ~/.bash_profile
+
 echo "Installed bit $VERSION"
