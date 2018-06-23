@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VERSION=0.0.4
+
 echo "Installing bit..."
 
 mkdir -p ~/.bit_{exports,aliases,functions}
@@ -19,7 +21,7 @@ for f in ~/.bit_{exports,aliases,functions}/*; do source $f; done
 EOF
 
 cat << 'EOF' > ~/.bit_exports/version
-export BIT_VERSION=0.0.4
+export BIT_VERSION=$VERSION
 EOF
 
 cat << 'EOF' > ~/.bit_exports/path_home_bin
@@ -98,3 +100,5 @@ function bit_pw_gen() {
   env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c $1
 }
 EOF
+
+echo "Installed bit $VERSION"
